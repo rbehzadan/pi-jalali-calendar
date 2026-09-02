@@ -15,5 +15,11 @@
   },
   "scripts": {
     "test": "node --test test/calendar.test.mjs"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rbehzadan/pi-jalali-calendar.git"
+  },
+  "bugs": "https://github.com/rbehzadan/pi-jalali-calendar/issues",
+  "homepage": "https://github.com/rbehzadan/pi-jalali-calendar#readme"
 }

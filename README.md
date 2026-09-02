@@ -3,12 +3,12 @@
 A dependency-free Pi package exposing `jalali_calendar`:
 
 - `convert`: convert between Jalali and Gregorian dates.
-- `days_between`: count absolute calendar days between dates in either calendar.
+- `difference_in_calendar_days`: calculate the absolute calendar-day difference between dates in either calendar.
 
 ## Install locally
 
 ```bash
-pi install /absolute/path/to/pi-jalali-calendar
+pi install git:github.com/rbehzadan/pi-jalali-calendar
 ```
 
 For development:
@@ -31,7 +31,7 @@ npm test
 
 ```json
 {
-  "operation": "days_between",
+  "operation": "difference_in_calendar_days",
   "from_calendar": "jalali",
   "date": { "year": 1402, "month": 12, "day": 29 },
   "other_calendar": "gregorian",

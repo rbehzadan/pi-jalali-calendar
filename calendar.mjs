@@ -102,7 +102,7 @@ export function convertDate(fromCalendar, toCalendar, date) {
   return toCalendar === "gregorian" ? d2g(jdn) : d2j(jdn);
 }
 
-export function daysBetween(firstCalendar, firstDate, secondCalendar, secondDate) {
+export function differenceInCalendarDays(firstCalendar, firstDate, secondCalendar, secondDate) {
   return Math.abs(toJdn(secondCalendar, secondDate) - toJdn(firstCalendar, firstDate));
 }
 
