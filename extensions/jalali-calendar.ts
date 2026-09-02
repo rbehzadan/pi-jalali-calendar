@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { StringEnum } from "@earendil-works/pi-ai";
 import { Type } from "typebox";
-import { convertDate, differenceInCalendarDays, formatDate } from "../calendar.mjs";
+import { convertDate, daysBetween, formatDate } from "../calendar.mjs";
 
 const calendar = StringEnum(["jalali", "gregorian"] as const);
 const date = Type.Object({
@@ -14,13 +14,13 @@ export default function (pi: ExtensionAPI) {
   pi.registerTool({
     name: "jalali_calendar",
     label: "Jalali Calendar",
-    description: "Convert Jalali and Gregorian dates, or calculate the absolute difference in calendar days.",
-    promptSnippet: "Convert Jalali/Gregorian dates or calculate calendar-day differences",
+    description: "Convert Jalali and Gregorian dates, or calculate absolute calendar-day differences.",
+    promptSnippet: "Convert Jalali/Gregorian dates or count calendar days between them",
     promptGuidelines: [
       "Use jalali_calendar for Jalali/Gregorian conversion or date differences; do not calculate these conversions manually.",
     ],
     parameters: Type.Object({
-      operation: StringEnum(["convert", "difference_in_calendar_days"] as const),
+      operation: StringEnum(["convert", "days_between"] as const),
       from_calendar: calendar,
       date: date,
       to_calendar: Type.Optional(calendar),
@@ -37,10 +37,10 @@ export default function (pi: ExtensionAPI) {
         };
       }
 
-      if (!params.other_calendar || !params.other_date) throw new Error("other_calendar and other_date are required for difference_in_calendar_days");
-      const days = differenceInCalendarDays(params.from_calendar, params.date, params.other_calendar, params.other_date);
+      if (!params.other_calendar || !params.other_date) throw new Error("other_calendar and other_date are required for days_between");
+      const days = daysBetween(params.from_calendar, params.date, params.other_calendar, params.other_date);
       return {
-        content: [{ type: "text", text: `${days} calendar day(s) between ${formatDate(params.date)} and ${formatDate(params.other_date)}` }],
+        content: [{ type: "text", text: `${days} day(s) between ${formatDate(params.date)} and ${formatDate(params.other_date)}` }],
         details: { operation: params.operation, days },
       };
     },
