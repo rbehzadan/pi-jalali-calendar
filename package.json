@@ -1,7 +1,7 @@
 {
   "name": "pi-jalali-calendar",
   "version": "0.1.0",
-  "description": "Jalali/Gregorian conversion and day-difference tools for Pi",
+  "description": "Jalali/Gregorian conversion, day-difference, and Iranian holiday tools for Pi",
   "keywords": ["pi-package", "pi", "jalali", "persian-calendar", "calendar"],
   "license": "MIT",
   "type": "module",
@@ -11,10 +11,10 @@
     "typebox": "*"
   },
   "pi": {
-    "extensions": ["./extensions/jalali-calendar.ts"]
+    "extensions": ["./extensions/jalali-calendar.ts", "./extensions/holidays.ts"]
   },
   "scripts": {
-    "test": "node --test test/calendar.test.mjs"
+    "test": "node --test test/calendar.test.mjs test/holidays.test.mjs"
   },
   "repository": {
     "type": "git",
